@@ -20,25 +20,25 @@ Concepts and Terminology
 What is Apache CloudStack?
 --------------------------
 
-Apache CloudStack is an open source Infrastructure-as-a-Service platform that 
-manages and orchestrates pools of storage, network, and computer resource to 
-build a public or private IaaS compute cloud. 
+Apache CloudStack is an open source Infrastructure-as-a-Service platform that
+manages and orchestrates pools of storage, network, and computer resource to
+build a public or private IaaS compute cloud.
 
 What can Apache CloudStack do?
 ------------------------------
 
 With CloudStack you can:
 
--  Set up an on-demand elastic cloud computing service. 
+-  Set up an on-demand elastic cloud computing service.
 -  Allow end-users to provision resources
 -  Carry out all possible functions through the API
 
 Multiple Hypervisor Support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CloudStack works with a variety of hypervisors and hypervisor-like 
-technologies. A single cloud can contain multiple hypervisor implementations. 
-As of the current release, CloudStack supports: 
+CloudStack works with a variety of hypervisors and hypervisor-like
+technologies. A single cloud can contain multiple hypervisor implementations.
+As of the current release, CloudStack supports:
 
 -  KVM
 -  vSphere (via vCenter)
@@ -51,102 +51,102 @@ As of the current release, CloudStack supports:
 Massively Scalable Infrastructure Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CloudStack can manage tens of thousands of physical servers installed in 
+CloudStack can manage tens of thousands of physical servers installed in
 geographically distributed datacenters. The management server service can be
 installed in a clustered manner.
-Maintenance or other outages of the management server(s) can occur without 
-affecting the virtual machines running in the cloud. 
+Maintenance or other outages of the management server(s) can occur without
+affecting the virtual machines running in the cloud.
 
 
 Automatic Cloud Configuration Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CloudStack automatically configures the networking and storage for each virtual 
+CloudStack automatically configures the networking and storage for each virtual
 machine created. CloudStack deploys virtual appliances to provide internal
-services. These appliances offer services such as firewalling, routing, DHCP, 
-VPN, console proxy, storage access, and storage replication. The extensive use 
-of horizontally scalable virtual machines simplifies the installation and ongoing 
-operation of a cloud. 
+services. These appliances offer services such as firewalling, routing, DHCP,
+VPN, console proxy, storage access, and storage replication. The extensive use
+of horizontally scalable virtual machines simplifies the installation and ongoing
+operation of a cloud.
 
 Graphical User Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 CloudStack offers a web interface which can be used by administrators for provisioning
-and managing the cloud, as well as an end-user's for creating and managing virtual 
-machines, networks and VM templates. The UI can be customized to reflect the desired 
+and managing the cloud, as well as an end-user's for creating and managing virtual
+machines, networks and VM templates. The UI can be customized to reflect the desired
 service provider or enterprise look and feel.
 
 API
 ~~~
 
-CloudStack provides a REST-like API for the operation, management and use of 
-the cloud. 
+CloudStack provides a REST-like API for the operation, management and use of
+the cloud.
 
 AWS EC2 API and GCE Support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CloudStack can provide both an EC2 and GCE API translation layer to permit the common 
-EC2 and GCE tools to be used when communicating with a CloudStack cloud. 
+CloudStack can provide both an EC2 and GCE API translation layer to permit the common
+EC2 and GCE tools to be used when communicating with a CloudStack cloud.
 
 High Availability
 ~~~~~~~~~~~~~~~~~
 
-CloudStack has a number of features designed to increase the availability of the 
+CloudStack has a number of features designed to increase the availability of the
 system. The Management Server itself may be deployed in a multi-node clustered
 installation supporting physical or virtual load balancers. MySQL may be configured
-to use replication to provide failover in the event of database loss. For the 
-hosts, CloudStack supports NIC bonding and the use of separate networks for 
+to use replication to provide failover in the event of database loss. For the
+hosts, CloudStack supports NIC bonding and the use of separate networks for
 storage as well as iSCSI Multipath.
 
 
 Deployment Architecture Overview
 --------------------------------
 
-Generally speaking, most CloudStack deployments consist of the one or more management 
-servers, a MySQL database server and the resources to be managed. 
+Generally speaking, most CloudStack deployments consist of the one or more management
+servers, a MySQL database server and the resources to be managed.
 
-The minimum installation consists of one machine running the CloudStack 
+The minimum installation consists of one machine running the CloudStack
 Management Service and a MySQL Database with another machine running a hypervisor
 (it is technically possible to run the hypervisor the same machine as the management
 service and the database for test or development purposes).
 
 .. image:: _static/images/basic-deployment.png
 
-A more full-featured installation consists of a highly-available multi-node 
-Management Server installation and up to tens of thousands of hosts using any 
+A more full-featured installation consists of a highly-available multi-node
+Management Server installation and up to tens of thousands of hosts using any
 of several networking technologies.
 
 Management Server Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The management service orchestrates and allocates the resources in your cloud 
+The management service orchestrates and allocates the resources in your cloud
 deployment. We refer to the host of the management service as the management server.
 
-The management service can run on a dedicated physical host or as a virtual 
-machine.  It controls the allocation of virtual machines to hosts and assigns 
-storage and IP addresses to the virtual machine instances. The Management 
-Service runs in an Apache Tomcat container and requires a MySQL database for 
+The management service can run on a dedicated physical host or as a virtual
+machine.  It controls the allocation of virtual machines to hosts and assigns
+storage and IP addresses to the virtual machine instances. The Management
+Service runs in an Apache Tomcat container and requires a MySQL database for
 persistence.
 
 The management service:
 
--  Provides the web interface for both the administrator and end user. 
+-  Provides the web interface for both the administrator and end user.
 -  Provides the API interfaces for the CloudStack API.
 -  Manages the assignment of guest VMs to a specific compute resource
--  Manages the assignment of public and private IP addresses. 
--  Allocates storage during the VM instantiation process. 
--  Manages snapshots, disk images (templates), and ISO images. 
+-  Manages the assignment of public and private IP addresses.
+-  Allocates storage during the VM instantiation process.
+-  Manages snapshots, disk images (templates), and ISO images.
 -  Provides a single point of configuration for your cloud.
 
 Cloud Infrastructure Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Resources within the cloud are managed as follows: 
+Resources within the cloud are managed as follows:
 
--  Regions: A collection of one or more geographically proximate zones managed 
-   by one or more management servers. 
+-  Regions: A collection of one or more geographically proximate zones managed
+   by one or more management servers.
 
--  Zones: Typically, a zone is generally mapped to a single datacenter. A zone 
+-  Zones: Typically, a zone is generally mapped to a single datacenter. A zone
    consists of one or more pods and secondary storage.
 
 -  Pods: A pod is logical construct. Pods are generally used to group clusters
@@ -154,33 +154,33 @@ Resources within the cloud are managed as follows:
    switch stack or physical storage array.
 
 -  Clusters: A cluster consists of one or more homogeneous hosts and one or more
-   primary storage pools. 
+   primary storage pools.
 
--  Host: A single compute node within a cluster, often a hypervisor. 
+-  Host: A single compute node within a cluster, often a hypervisor.
 
 -  Primary Storage: A storage resource provided to clusters for the actual running
    of instance disk images. Each primary storage pool is generally attached to a
-   specific cluster although zone-wide primary storage is an option, it is not 
+   specific cluster although zone-wide primary storage is an option, it is not
    typically used.)
 
--  Secondary Storage: A zone-wide resource which stores disk templates, ISO 
-   images and snapshots. 
+-  Secondary Storage: A zone-wide resource which stores disk templates, ISO
+   images and snapshots.
 
 
 Networking Overview
 ~~~~~~~~~~~~~~~~~~~
 
-CloudStack offers many types of networking, but they typically fall into one 
-of two scenarios: 
+CloudStack offers many types of networking, but they typically fall into one
+of two scenarios:
 
--  Basic: Most analogous to AWS-classic style networking. This model uses a 
-   simple flat layer-2 network per pod where guests can be isolated from each 
+-  Basic: Most analogous to AWS-classic style networking. This model uses a
+   simple flat layer-2 network per pod where guests can be isolated from each
    other. The isolation rules are defined through security groups and implemented
-   at layer-3 by the hypervisor's bridge device via IP tables. Core routers 
+   at layer-3 by the hypervisor's bridge device via IP tables. Core routers
    route traffic between pods.
 
--  Advanced: This provides isolation between networks rather than between VMs. 
-   The isolation is typically provided at layer-2 by VLANs, although SDN 
+-  Advanced: This provides isolation between networks rather than between VMs.
+   The isolation is typically provided at layer-2 by VLANs, although SDN
    technologies such as VMware NSX, Nuage and VXLAN can be utilized.
 
 
@@ -190,10 +190,10 @@ CloudStack Terminology
 About Regions
 ~~~~~~~~~~~~~
 
-To increase availability of a very large cloud, you can optionally group 
+To increase availability of a very large cloud, you can optionally group
 resources into geographic regions. A region is the largest available
 organizational unit within a CloudStack deployment. A region is made up
-of availability zones. Each region is controlled by its own cluster of 
+of availability zones. Each region is controlled by its own cluster of
 Management Servers, running in one of the zones. The zones in a region are
 typically located in relatively close geographical proximity. Regions are a
 useful technique for providing fault tolerance and disaster recovery.
@@ -207,7 +207,7 @@ communities of zones under their own nearby Management Servers, the
 latency of communications within the cloud is reduced compared to
 managing widely-dispersed zones from a single central Management Server.
 
-Usage records are consolidated and tracked at the region level, creating 
+Usage records are consolidated and tracked at the region level, creating
 reports or invoices for each geographic region.
 
 |region-overview.png: Nested structure of a region.|
@@ -224,12 +224,12 @@ About Zones
 
 A zone is the second largest organizational unit within a CloudStack
 deployment. Zones are also referred to as Availability Zones as they usually
-follow the concept of 'nothing shared' between Availability Zones. In this 
-model, loss of an Availability Zone due to power loss, lightning strike or 
+follow the concept of 'nothing shared' between Availability Zones. In this
+model, loss of an Availability Zone due to power loss, lightning strike or
 Internet interruption does not effect other zones. Therefore
 a zone typically corresponds to a single datacenter.
 
-It is permissible to have multiple zones within a datacenter. 
+It is permissible to have multiple zones within a datacenter.
 
 A zone consists of:
 
@@ -269,28 +269,28 @@ In order to support zone-wide functions for vSphere, CloudStack is aware
 of vSphere Datacenters and can map each Datacenter to a CloudStack zone.
 To enable features like storage live migration and zone-wide primary
 storage for vSphere hosts, CloudStack has to ensure that a zone contains
-only a single vSphere Datacenter. Therefore, when you are creating a new 
-CloudStack zone, you can select a vSphere Datacenter for the zone. If you 
-are provisioning multiple vSphere Datacenters, each one will be set up as 
+only a single vSphere Datacenter. Therefore, when you are creating a new
+CloudStack zone, you can select a vSphere Datacenter for the zone. If you
+are provisioning multiple vSphere Datacenters, each one will be set up as
 a single zone in CloudStack.
 
 .. note::
-   If you are upgrading from a previous CloudStack version, and your existing 
-   deployment contains a zone with clusters from multiple vSphere Datacenters, 
-   that zone will not be forcibly migrated to the new model. It will continue 
-   to function as before. However, any new zone-wide operations, such as 
-   zone-wide primary storage and live storage migration, will not be available 
+   If you are upgrading from a previous CloudStack version, and your existing
+   deployment contains a zone with clusters from multiple vSphere Datacenters,
+   that zone will not be forcibly migrated to the new model. It will continue
+   to function as before. However, any new zone-wide operations, such as
+   zone-wide primary storage and live storage migration, will not be available
    in that zone.
 
 
 About Pods
 ~~~~~~~~~~
 
-A pod is logical construct. Pods are generally used to group clusters into 
-a failure domains ie. a number of clusters which share the same physical switch 
-stack or physical storage array. Hosts in the same pod should be in the same 
-subnet. A pod is the third-largest organizational unit within a CloudStack 
-deployment. Pods are contained within zones. A pod consists of one or more 
+A pod is logical construct. Pods are generally used to group clusters into
+a failure domains ie. a number of clusters which share the same physical switch
+stack or physical storage array. Hosts in the same pod should be in the same
+subnet. A pod is the third-largest organizational unit within a CloudStack
+deployment. Pods are contained within zones. A pod consists of one or more
 clusters of hosts and one or more primary storage servers. Pods are not visible to
 the end user.
 
@@ -372,7 +372,7 @@ For a host to function in CloudStack, you must do the following:
 
 -  Install hypervisor software on the host
 
--  Assign a management IP address to the host 
+-  Assign a management IP address to the host
 
 -  Connect the CloudStack Management Service to the host.
 
@@ -380,56 +380,52 @@ For a host to function in CloudStack, you must do the following:
 About Primary Storage
 ~~~~~~~~~~~~~~~~~~~~~
 
-Primary storage pools store the virtual disks for all of the VMs running on 
-the hosts. They can be either shared or local. 
+Primary storage pools store the virtual disks for all of the VMs running on
+the hosts. The storage pools can be either shared or local.
 
 Shared pools are accessed by a number of hosts simulataneously and each
-pool is generally associated with a specific cluster where they store the 
+pool is generally associated with a specific cluster where they store the
 virtual disks for the VMs running on the hosts in that cluster.
-On KVM and VMware, you can provision primary storage on a per-zone basis.
+On KVM and VMware, you can provision shared primary storage on a per-zone basis.
 
 Local primary storage pools are pools of storage on the hypervisors themselves
-(one pool per host).  
+(one pool per host).
 
 At least one primary storage pool is required in each cluster (or potentially
-zone).  It is typically located close to the hosts for increased performance. 
-CloudStack manages the allocation of guest virtual disks to particular primary 
+zone).  It is typically located close to the hosts for increased performance.
+CloudStack manages the allocation of guest virtual disks to particular primary
 storage pools.
 
 It is useful to set up zone-wide primary storage when you want to avoid
-extra data copy operations, However it can limit the total number of hosts
-which can reside in a particular zone. With cluster-based primary storage, data in
-the primary storage is directly available only to VMs within that
-cluster. If a VM in a different cluster needs some of the data, it must
-be copied from one cluster to another, using the zone's secondary
+extra data copy operations, however it can limit the total number of hosts
+which can reside in a particular zone. With cluster-based primary storage, disk
+images in a primary storage pool are available only to VMs within that
+cluster. If a VM in a different cluster needs access an disk image in another cluster
+the image must be copied from one cluster to another, using the zone's secondary
 storage as an intermediate step. This operation can be time-consuming.
 
-For Hyper-V, only SMB/CIFS storage is supported. Note that Zone-wide Primary
-Storage is not supported in Hyper-V.
+For Hyper-V, only SMB/CIFS storage is supported. Note that zone-wide primary
+storage is not supported in Hyper-V.
 
 CloudStack is designed to work with all standards-compliant iSCSI and
 NFS servers that are supported by the underlying hypervisor, including,
 for example:
 
 -  SolidFire for iSCSI
-
 -  Dell EqualLogic™ for iSCSI
-
 -  Network Appliance's filers for NFS and iSCSI
-
 -  Scale Computing for NFS
 
-If you intend to use only local disk for your installation, it is not 
-necessary to add separate primary storage.
-
+If you intend to use only local disk for your installation, it is not
+a requirement to also add separate primary storage.
 
 About Secondary Storage
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Secondary storage stores the following:
 
--  Templates — OS images that can be used to boot VMs and can include
-   additional configuration information, such as installed applications
+-  Templates — OS images that can be used to create VMs, these can include
+   additional configuration, such as installed applications.
 
 -  ISO images — disc images containing data or bootable media for
    operating systems
@@ -442,8 +438,8 @@ of the secondary storage, which may be set as per zone or per region.
 
 To make items in secondary storage available to all hosts throughout the
 cloud, you can add object storage in conjunction with a the zone-based NFS
-Secondary Staging Store. In this configuration it is not necessary to copy 
-templates and snapshots from one zone to another, as would be required when 
+Secondary Staging Store. In this configuration it is not necessary to copy
+templates and snapshots from one zone to another, as would be required when
 using zone NFS alone.
 
 For Hyper-V hosts, only SMB/CIFS storage is supported.
@@ -460,106 +456,136 @@ resource, making templates and other data available to any zone in the
 cloud.
 
 .. warning::
-   Heterogeneous Secondary Storage is not supported in Regions. For example, 
-   you cannot set up multiple zones, one using NFS secondary and the other 
+   Heterogeneous Secondary Storage is not supported in Regions. For example,
+   you cannot set up multiple zones, one using NFS secondary and the other
    using S3 or Swift secondary.
 
 
 About Physical Networks
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Part of adding a zone is describing the physical networking topology of your 
-connected hosts. One or (in an
-advanced zone) more physical networks can be associated with each zone.
+Part of adding a zone is describing the physical networking topology of your
+connected hosts. One or (in an advanced zone) more physical networks can be
+associated with each zone.
 
-Physical Networks are slightly confusingly named – may be better to call them 
-Network types or groups.
-Physically independent network interfaces don’t have to be different ‘physical networks’ unless:
+Physical Networks are slightly confusingly named – may be better to think of them
+as grouped network types. Physically independent network interfaces don’t have to
+be different ‘physical networks’ unless:
 
--  They use different separation techniques VLAN vs VXLAN
--  You have multiple physical guest networks   
+-  They use different isolation techniques VLAN vs VXLAN
+-  You have multiple physical guest networks (in advanced networks)
 
-Each physical network can carry one or more types of network traffic. 
+Each physical network can carry one or more types of network traffic.
 The choices of traffic type for each network vary depending on whether
 you are creating a zone with basic networking or advanced networking.
 
-A zone can have multiple physical networks. An administrator can:
+The process of configuring networks in CloudStack is all about letting CloudStack
+know what resources are available to it and what is can use those resources for.
+
+An administrator can:
 
 -  Add/Remove/Update physical networks in a zone
 
--  Configure VLANs on the physical network
+-  Specify what type of traffic is carried on each of the physical networks created.
 
--  Configure labels so that the network traffic can be mapped to the 
+-  Configure labels so that the network traffic can be mapped to the
    networks on the hypervisors
+
+-  Configure CloudStack to use specific VLANs for its different traffic types.
+
+-  Configure the IP addresses ranges that CloudStack should use for the different
+   traffic types.
 
 -  Configure the service providers (firewalls, load balancers, etc.)
    available on a physical network
 
--  Configure the IP addresses trunked to a physical network
-
--  Specify what type of traffic is carried on the physical network, as
-   well as other properties like network speed
 
 
-Basic Zone Network Traffic Types
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Network Traffic Types
+~~~~~~~~~~~~~~~~~~~~~
 
-When basic networking is used, there can be only one physical network in
+In order to understand guest and public traffic better, it helps to understand a
+little about CloudStack's options for connecting guest VMs to the outside world.
+
+CloudStack can either utilise physical routers in your network or create one of its
+own as a virtual machine - a *virtual router*. When using CloudStack's virtual router,
+CloudStack has full control over the router and therefore can provide and manage a
+number of network servers.
+
+Below you can see the guest/public network topologies for Basic, Advanced (Isolated)
+and Advanced (shared) networks. These will be explained later.
+
+
+
+
+
+
+-  Guest. Guest networks carry the network traffic between guests and between guests
+   and the network gateway. In the 'advanced networking' model, 'isolated network' guest networks
+   are isolated from each other by way of VLANs or a supported SDN technology. The virtual
+   router NATs traffic from the public networks to guest networks. 'Shared
+   network' networks are not NATed and instead rely on routing on the L3
+   gateway.
+   In the 'basic networking' model, a subnet is assigned to each pod for all of the
+   guests in that pod to use to communicate with each other and with the network
+   gateway. Guests in one pod communicate with guests in another pod via the L3 gateway.
+   Security groups (L3 firewall rules) encapsulate the guests to provide security.
+
+-  Public. Public traffic is traffic which occurs 'north' (outside) of the guest
+   networks' gateway. This may be to the public internet, or may be within an
+   organisation's infrastructure (or both). We w
+
+-  Management. CloudStack’s internal resources communicate with
+   each other over the management network. This includes communication between hosts,
+   system VMs (VMs used by CloudStack to perform various tasks in the cloud), and
+   any other component that communicates directly with the CloudStack Management Server.
+   CloudStack requires that you specify a range of IP addresses which it can use for each pod without
+   conflicting with any devices that you may have on that network now or in the
+   future.  We describe this as a 'reserved range'.
+
+-  Storage. The 'storage' network only carries **secondary** storage traffic, it
+   does not affect primary storage traffic. Secondary storage traffic is the movement
+   of VM templates, ISOs and snapshots to/from the secondary storage pools.
+   If the (secondary) storage network is not specified, (secondary) storage traffic
+   will be placed on the management network.
+   Therefore, if addition physical interfaces are available, the benefit
+   to separating (secondary) storage traffic is increased throughput and decreased contention.
+
+
+These traffic types can each be on a separate physical networks, or they
+can be combined.
+
+Advanced and Basic Networking Models
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Basic Zone Network Traffic Differences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When basic networking is used, there can be only one 'CloudStack' physical network in
 the zone. That physical network carries the following traffic types:
 
--  Guest. When end users run VMs, they generate guest traffic. The guest
-   VMs communicate with each other over a network that can be referred
-   to as the guest network. Each pod in a basic zone is a broadcast
-   domain, and therefore each pod has a different IP range for the guest
-   network. The administrator must configure the IP range for each pod.
+-  Management
+-  Storage
+-  Guest. Each pod in a basic zone is a broadcast
+   domain, and therefore each pod has a different subnet for its guest network.
+   The administrator must configure the IP range for the guests in each pod
+   to use and configure the L3 gateway to route those ranges between pods.
 
--  Management. When CloudStack's internal resources communicate with
-   each other, they generate management traffic. This includes
-   communication between hosts, system VMs (VMs used by CloudStack to
-   perform various tasks in the cloud), and any other component that
-   communicates directly with the CloudStack Management Server. You must
-   configure the IP range for the system VMs to use.
+-  Public traffic. Generally in Basic networks there will not be a public network,
+   unless a Citrix NetScaler is employed. If you use a NetScaler load balancer
+   and enable its elastic IP and elastic load balancing (EIP and ELB) features,
+   you must also configure a network to
+   carry public traffic. CloudStack takes care of presenting the necessary
+   network configuration steps to you in the UI when you add a new zone.
 
-.. note::
-   We strongly recommend the use of separate NICs for management traffic
-   and guest traffic.
-
--  Public. Public traffic is generated when VMs in the cloud access the
-   Internet. Publicly accessible IPs must be allocated for this purpose.
-   End users can use the CloudStack UI to acquire these IPs to implement
-   NAT between their guest network and the public network, as described
-   in Acquiring a New IP Address.
-
--  Storage. While labeled "storage" this is specifically about secondary
-   storage, and doesn't affect traffic for primary storage. This
-   includes traffic such as VM templates and snapshots, which is sent
-   between the secondary storage VM and secondary storage servers.
-   CloudStack uses a separate Network Interface Controller (NIC) named
-   storage NIC for storage network traffic. Use of a storage NIC that
-   always operates on a high bandwidth network allows fast template and
-   snapshot copying. You must configure the IP range to use for the
-   storage network.
-
-In a basic network, configuring the physical network is fairly
-straightforward. In most cases, you only need to configure one guest
-network to carry traffic that is generated by guest VMs. If you use a
-NetScaler load balancer and enable its elastic IP and elastic load
-balancing (EIP and ELB) features, you must also configure a network to
-carry public traffic. CloudStack takes care of presenting the necessary
-network configuration steps to you in the UI when you add a new zone.
+In a basic network you will need to define:
+-  The IP range in each pod which CloudStack can use for the management interfaces of its System VMs
+-  The IP range in each pod from which CloudStack can assign IP addresses to guest virtual machines.
 
 
-Basic Zone Guest IP Addresses
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-When basic networking is used, CloudStack will assign IP addresses in
-the CIDR of the pod to the guests in that pod. The administrator must
-add a Direct IP range on the pod for this purpose. These IPs are in the
-same VLAN as the hosts.
-
-
-Advanced Zone Network Traffic Types
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Advanced Zone Network Traffic Differences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When advanced networking is used, there can be multiple physical
 networks in the zone. Each physical network can carry one or more
@@ -567,41 +593,24 @@ traffic types, and you need to let CloudStack know which type of network
 traffic you want each network to carry. The traffic types in an advanced
 zone are:
 
--  Guest. When end users run VMs, they generate guest traffic. The guest
-   VMs communicate with each other over a network that can be referred
-   to as the guest network. This network can be isolated or shared. In
+-  Management
+-  Storage
+-  Guest. Guest networks carry the network traffic between guests and between guests
+   and the network gateway. This network can be isolated or shared. In
    an isolated guest network, the administrator needs to reserve VLAN
    ranges to provide isolation for each CloudStack account’s network
    (potentially a large number of VLANs). In a shared guest network, all
    guest VMs share a single network.
-
--  Management. When CloudStack’s internal resources communicate with
-   each other, they generate management traffic. This includes
-   communication between hosts, system VMs (VMs used by CloudStack to
-   perform various tasks in the cloud), and any other component that
-   communicates directly with the CloudStack Management Server. You must
-   configure the IP range for the system VMs to use.
-
 -  Public. Public traffic is generated when VMs in the cloud access the
    Internet. Publicly accessible IPs must be allocated for this purpose.
    End users can use the CloudStack UI to acquire these IPs to implement
    NAT between their guest network and the public network, as described
    in “Acquiring a New IP Address” in the Administration Guide.
 
--  Storage. While labeled "storage" this is specifically about secondary
-   storage, and doesn't affect traffic for primary storage. This
-   includes traffic such as VM templates and snapshots, which is sent
-   between the secondary storage VM and secondary storage servers.
-   CloudStack uses a separate Network Interface Controller (NIC) named
-   storage NIC for storage network traffic. Use of a storage NIC that
-   always operates on a high bandwidth network allows fast template and
-   snapshot copying. You must configure the IP range to use for the
-   storage network.
+
 
 These traffic types can each be on a separate physical network, or they
-can be combined with certain restrictions. When you use the Add Zone
-wizard in the UI to create a new zone, you are guided into making only
-valid choices.
+can be combined with certain restrictions.
 
 
 Advanced Zone Guest IP Addresses
@@ -632,22 +641,16 @@ networks if desired.
 System Reserved IP Addresses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The various system VMs, (Secondary Storage VMs, Console Proxy VMs, and 
+The various system VMs, (Secondary Storage VMs, Console Proxy VMs, and
 in the case of vSphere, the Virtual Routers) require IP adresses in order
-for the management server(s) to communicate with them.
+for the management server(s) to communicate with them. Therefore you need to
+configure a range of 'reserved' IP addresses from the management network
+in each pod. These IP addresses are then assigned as required to the management
+network interfaces of the system VMs.
 
-In each zone, you need to configure a range of 'reserved' IP addresses 
-on the management network in each pod. These IP addresses   This network carries communication between the
-CloudStack Management Server 
-
-The reserved IP addresses must be unique across the cloud. You cannot,
+The reserved IP addresses must be unique within each region. You cannot,
 for example, have a host in one zone which has the same private IP
-address as a host in another zone.
-
-The hosts in a pod are assigned private IP addresses. These are
-typically RFC1918 addresses. The Console Proxy and Secondary Storage
-system VMs are also allocated private IP addresses in the CIDR of the
-pod that they are created in.
+address as a host in another zone within the same region.
 
 Make sure computing servers and Management Servers use IP addresses
 outside of the System Reserved IP range. For example, suppose the System
@@ -705,4 +708,3 @@ techniques:
 .. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
 .. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
 .. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
- 
